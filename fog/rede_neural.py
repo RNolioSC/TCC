@@ -18,13 +18,14 @@ if __name__ == '__main__':
                 print(i, j)
 
     model = Sequential()
-    model.add(Dense(12, input_dim=3, activation='relu'))
-    model.add(Dense(24, activation='relu'))
+    model.add(Dense(12, input_dim=3, activation='sigmoid'))
+    model.add(Dense(24, activation='sigmoid'))
     model.add(Dense(1, activation='sigmoid'))
 
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    #model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
 
-    model.fit(X, Y, epochs=30, batch_size=10)
+    model.fit(X, Y, epochs=10, batch_size=10)
     _, accuracy = model.evaluate(X, Y)
     print('Accuracy: %.2f' % (accuracy * 100))
     #tst = [[0.3333333333, 43745, 1], [0.0, 43745, 3], [0.2, 43745, 50], [0.8, 43745, 9]]
