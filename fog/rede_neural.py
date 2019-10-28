@@ -34,4 +34,5 @@ if __name__ == '__main__':
     for i in range(60):
         #print('%s => %d (expected %d)' % (X[i].tolist(), predictions[i], Y[i]))
         print('%s => %d (expected %d)' % (X[i].tolist(), predictions[i], Y[i]))
+    model.save('modelo.H5')
 
