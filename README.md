@@ -1,5 +1,5 @@
 # TCC
-## Rede neural>
+## Instalação das ferramentas para a rede neural:
 
 sudo pip3t install keras
 
