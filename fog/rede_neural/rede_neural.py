@@ -5,11 +5,12 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.preprocessing.text import text_to_word_sequence
 from keras.preprocessing.text import one_hot
-
+import time
 
 if __name__ == '__main__':
-
-    dataset = genfromtxt(r'../simulacao/csv/cenarios_1_a_6.csv', encoding='latin-1', delimiter=',', skip_header=2,
+    
+    tempoi = time.time()
+    dataset = genfromtxt(r'../../simulacao/csv/cenarios_1_a_6.csv', encoding='latin-1', delimiter=',', skip_header=2,
                          usecols=(2, 3, 4, 5))
     X = dataset[:, 0:3]  # ultima linha - skip_header
     Y = dataset[:, 3]
@@ -26,13 +27,16 @@ if __name__ == '__main__':
 
     model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
 
-    history = model.fit(X, Y, epochs=10, batch_size=10)
+    history = model.fit(X, Y, epochs=10, batch_size=20)
 
     _, accuracy = model.evaluate(X, Y)
     print('Accuracy: %.2f' % (accuracy * 100))
 
     predictions = model.predict_classes(X)
-
+    
+    tempof = time.time()
+    print("tempo de execucao (s):", tempof-tempoi)
+    
     # summarize some cases
     #for i in range(60):
     #    print('%s => %d (expected %d)' % (X[i].tolist(), predictions[i], Y[i]))
